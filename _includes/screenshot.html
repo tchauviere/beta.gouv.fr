@@ -1,12 +1,7 @@
 {% if include.startup.status != 'investigation' %}
     {% assign startup_id = include.startup.id | remove: '/startup/' %}
     {% assign screenshot_file = site.static_files | where: 'basename', startup_id | first %}
+    {% assign screenshot_path = screenshot_file.path %}
 
-    {% if screenshot_file %}
-        {% assign screenshot_path = screenshot_file.path %}
-    {% else %}
-        {% assign screenshot_path = '/img/startup/' | append: startup_id | append: '.png' %}
-    {% endif %}
-
-    <img class="screenshot" src="{{ screenshot_path }}" title="Interface de {{ include.startup.title }}" alt="">
+    <img class="screenshot" src="{{ screenshot_file.path }}" title="Interface de {{ include.startup.title }}" alt="">
 {% endif %}
